@@ -12,7 +12,7 @@ interface FormatEmail extends Partial<User> {
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  async updatePassword(payload: UpdatePasswordDto, id: string): Promise<User> {
+  async updatePassword(payload: UpdatePasswordDto, id: number): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: { id },
     });
