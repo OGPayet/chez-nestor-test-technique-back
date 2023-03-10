@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { IApartment } from "@/types";
 
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const apartments: IApartment[] = [
   {
     title: "New Apartment",
