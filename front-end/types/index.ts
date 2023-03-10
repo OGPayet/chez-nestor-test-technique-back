@@ -13,3 +13,8 @@ export interface IApartment {
   area: number;
   pricePerSquareMeter: number;
 }
+
+export interface ILoginFormData {
+  email: string;
+  password: string;
+}
