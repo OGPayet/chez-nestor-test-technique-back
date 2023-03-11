@@ -9,7 +9,9 @@ definePageMeta({
 const route = useRoute();
 
 const apartmentData: IApartment = {
+  id: parseInt(route.query.id as string),
   title: route.query.title as string,
+  titleSlug: route.query.title as string,
   imageSrc: route.query.imageSrc as string,
   price: parseInt(route.query.price as string),
   address: route.query.address as string,
@@ -23,21 +25,31 @@ const apartmentData: IApartment = {
 const userStore = useUserStore();
 
 const booking = async (bookingData: IApartmentFormData) => {
-  await $fetch("/booking", {
-    method: "POST",
-    baseURL: "http://localhost:4000",
-    headers: {
-      Authorization: `Bearer ${userStore.jwt}`,
-    },
-    bookingData,
-  });
+  try {
+    const result = await $fetch("/booking", {
+      method: "POST",
+      baseURL: "http://localhost:4000",
+      headers: {
+        Authorization: `Bearer ${userStore.jwt}`,
+      },
+      body: {
+        ...bookingData,
+        userId: userStore.userData.id,
+        apartmentId: apartmentData.id,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 </script>
 
 <template>
   <div class="py-20 px-20">
     <Apartment
+      :id="apartmentData.id"
       :title="apartmentData.title"
+      :title-slug="apartmentData.titleSlug"
       :image-src="apartmentData.imageSrc"
       :price="apartmentData.price"
       :address="apartmentData.address"

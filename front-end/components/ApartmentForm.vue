@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { IApartmentFormData } from "@/types";
-import { DefaultSerializer } from "v8";
 
 const formData: IApartmentFormData = reactive({
   dateOfArrival: "",
@@ -11,7 +10,11 @@ const formData: IApartmentFormData = reactive({
 const emit = defineEmits(["formSubmitted"]);
 
 const submit = () => {
-  emit("formSubmitted", formData);
+  emit("formSubmitted", {
+    dateOfArrival: new Date(formData.dateOfArrival),
+    dateOfDeparture: new Date(formData.dateOfDeparture),
+    cleaningService: formData.cleaningService,
+  });
 };
 </script>
 
@@ -28,28 +31,29 @@ const submit = () => {
           <div class="md:col-span-5">
             <label for="date_of_arrival">Date of arrival</label>
             <input
+              v-model="formData.dateOfArrival"
               type="date"
               name="date_of_arrival"
               id="date_of_arrival"
               class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-              value=""
             />
           </div>
 
           <div class="md:col-span-5">
             <label for="date_of_departure">Date of departure</label>
             <input
+              v-model="formData.dateOfDeparture"
               type="date"
               name="date_of_departure"
               id="date_of_departure"
               class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-              value=""
             />
           </div>
 
           <div class="md:col-span-5">
             <div class="inline-flex items-center">
               <input
+                v-model="formData.cleaningService"
                 type="checkbox"
                 name="billing_same"
                 id="billing_same"
@@ -64,7 +68,7 @@ const submit = () => {
           <div class="md:col-span-5 text-right">
             <div class="inline-flex items-end">
               <button
-                @submit="submit"
+                @click="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded"
               >
                 Book

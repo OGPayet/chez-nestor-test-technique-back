@@ -27,7 +27,9 @@ onMounted(async () => {
     <Apartment
       v-for="(apartment, index) in apartments"
       :key="index"
+      :id="apartment.id"
       :title="apartment.title"
+      :title-slug="apartment.titleSlug"
       :imageSrc="apartment.imageSrc"
       :price="apartment.price"
       :address="apartment.address"

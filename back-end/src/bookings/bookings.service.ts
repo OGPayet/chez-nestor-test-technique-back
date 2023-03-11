@@ -21,6 +21,9 @@ export class BookingsService {
     const apartmentInDb = await this.prisma.apartment.findFirst({
       where: { id: bookingDto.apartmentId },
     });
+    const isUserAlreadyHaveBooking = await this.prisma.booking.findFirst({
+      where: { userId: bookingDto.userId },
+    });
 
     if (bookingInDb) {
       throw new HttpException('apartment_already_booked', HttpStatus.CONFLICT);
@@ -30,6 +33,15 @@ export class BookingsService {
     }
     if (!apartmentInDb) {
       throw new HttpException('apartment_not_found', HttpStatus.NOT_FOUND);
+    }
+    if (isUserAlreadyHaveBooking) {
+      throw new HttpException(
+        {
+          status: HttpStatus.CONFLICT,
+          error: 'user_already_have_booking',
+        },
+        HttpStatus.CONFLICT,
+      );
     }
 
     return await this.prisma.booking.create({

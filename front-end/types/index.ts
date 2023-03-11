@@ -1,5 +1,7 @@
 export interface IApartment {
+  id: number;
   title: string;
+  titleSlug: string;
   imageSrc: string;
   price: number;
   address: string;

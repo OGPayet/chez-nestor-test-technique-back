@@ -1,6 +1,14 @@
 <script setup lang="ts">
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   title: {
+    type: String,
+    required: true,
+  },
+  titleSlug: {
     type: String,
     required: true,
   },
@@ -64,9 +72,11 @@ const slugify = (str: string): string => {
   <div class="relative mx-auto w-full">
     <NuxtLink
       :to="{
-        path: `/apartment-${slugify(title)}`,
+        path: `/apartment-${titleSlug}`,
         query: {
+          id,
           title,
+          titleSlug,
           imageSrc,
           price,
           address,
