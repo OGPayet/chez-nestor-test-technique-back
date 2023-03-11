@@ -40,6 +40,7 @@ onMounted(async () => {
       :stateOfFurniture="apartment.stateOfFurniture"
       :area="apartment.area"
       :pricePerSquareMeter="apartment.pricePerSquareMeter"
+      :is-booked="apartment.isBooked"
     ></Apartment>
   </div>
 </template>

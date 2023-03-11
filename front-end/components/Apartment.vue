@@ -56,6 +56,10 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  isBooked: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const slugify = (str: string): string => {
@@ -71,22 +75,27 @@ const slugify = (str: string): string => {
 <template>
   <div class="relative mx-auto w-full">
     <NuxtLink
-      :to="{
-        path: `/apartment-${titleSlug}`,
-        query: {
-          id,
-          title,
-          titleSlug,
-          imageSrc,
-          price,
-          address,
-          numberOfParkingSpaces,
-          numberOfBathrooms,
-          numberOfBedrooms,
-          area,
-          pricePerSquareMeter,
-        },
-      }"
+      :to="
+        isBooked
+          ? ''
+          : {
+              path: `/apartment-${titleSlug}`,
+              query: {
+                id,
+                title,
+                titleSlug,
+                imageSrc,
+                price,
+                address,
+                numberOfParkingSpaces,
+                numberOfBathrooms,
+                numberOfBedrooms,
+                area,
+                pricePerSquareMeter,
+                isBooked: isBooked ? '1' : '0',
+              },
+            }
+      "
       class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full"
     >
       <div class="shadow p-4 rounded-lg bg-white">
@@ -149,10 +158,10 @@ const slugify = (str: string): string => {
           </div>
 
           <span
-            v-if="isFeatured"
+            v-if="isBooked"
             class="absolute top-0 left-0 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-red-500 text-sm font-medium text-white select-none"
           >
-            Featured
+            Already booked
           </span>
         </div>
 

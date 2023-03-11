@@ -32,6 +32,7 @@ model Apartment {
   numberOfBedrooms        Int
   area                    Int
   pricePerSquareMeter     Int
+  isBooked                Boolean      @default(false)
   Booking                 Booking[]
 }
 

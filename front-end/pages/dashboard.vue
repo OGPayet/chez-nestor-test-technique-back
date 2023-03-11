@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IBooking, IUser, IApartmentFormData } from "@/types";
-import { UserService, BookingService } from "@/services";
+import { UserService, BookingService, ApartmentService } from "@/services";
 import { useUserStore } from "@/store/user";
 
 definePageMeta({
@@ -27,8 +27,6 @@ onMounted(async () => {
         .toISOString()
         .substring(0, 10);
       bookingFormData.cleaningService = userBooking.value.cleaningService;
-
-      console.log(bookingFormData);
     } catch (err: any) {
       console.log(err);
     }
@@ -87,9 +85,13 @@ const cancelBookingWithSuccess: Ref<boolean> = ref<boolean>(false);
 const cancelBookingErrorMessage: Ref<string> = ref<string>("");
 
 const cancelBooking = async () => {
-  if (userBooking.value?.id) {
+  if (userBooking.value?.id && userBooking.value?.apartment) {
     try {
       await BookingService.delete(userStore.jwt, userBooking.value.id);
+      await ApartmentService.update(userStore.jwt, {
+        ...userBooking.value.apartment,
+        isBooked: false,
+      });
       userBooking.value = null;
       cancelBookingWithSuccess.value = true;
     } catch (err: any) {
@@ -245,6 +247,7 @@ const cancelBooking = async () => {
         :number-of-bathrooms="userBooking.apartment.numberOfBathrooms"
         :number-of-bedrooms="userBooking.apartment.numberOfBedrooms"
         :number-of-parking-spaces="userBooking.apartment.numberOfParkingSpaces"
+        :is-booked="userBooking.apartment.isBooked"
       >
       </Apartment>
       <button

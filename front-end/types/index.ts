@@ -13,6 +13,7 @@ export interface IApartment {
   stateOfFurniture?: string;
   area: number;
   pricePerSquareMeter: number;
+  isBooked: boolean;
 }
 
 export interface ILoginFormData {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IApartment, IApartmentFormData } from "@/types";
-import { BookingService } from "@/services";
+import { BookingService, ApartmentService } from "@/services";
 import { useUserStore } from "@/store/user";
 
 definePageMeta({
@@ -21,6 +21,7 @@ const apartmentData: IApartment = {
   numberOfBedrooms: parseInt(route.query.numberOfBedrooms as string),
   area: parseInt(route.query.numberOfBedrooms as string),
   pricePerSquareMeter: parseInt(route.query.numberOfBedrooms as string),
+  isBooked: !!parseInt(route.query.isBooked as string),
 };
 
 const userStore = useUserStore();
@@ -36,6 +37,10 @@ const booking = async (bookingData: IApartmentFormData) => {
         apartmentId: apartmentData.id,
       });
       bookedWithSuccess.value = true;
+      await ApartmentService.update(userStore.jwt, {
+        ...apartmentData,
+        isBooked: true,
+      });
     } catch (err: any) {
       if (err.data?.message) {
         if (err.data.message === "user_already_have_booking") {
@@ -64,6 +69,7 @@ const booking = async (bookingData: IApartmentFormData) => {
       :number-of-parking-spaces="apartmentData.numberOfParkingSpaces"
       :area="apartmentData.area"
       :price-per-square-meter="apartmentData.pricePerSquareMeter"
+      :is-booked="apartmentData.isBooked"
     ></Apartment>
     <ApartmentForm
       @formSubmitted="booking"

@@ -10,4 +10,15 @@ export default {
       },
     });
   },
+
+  async update(jwt: string, body: IApartment): Promise<IApartment[]> {
+    return await $fetch("/apartment", {
+      method: "PUT",
+      baseURL: "http://localhost:4000",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+      body,
+    });
+  },
 };
