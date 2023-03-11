@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { IApartment } from "@/types";
+import { ApartmentService } from "@/services";
 import { useUserStore } from "@/store/user";
 
 definePageMeta({
@@ -10,13 +11,11 @@ const apartments: Ref<IApartment[]> = ref([]);
 const userStore = useUserStore();
 
 onMounted(async () => {
-  apartments.value = await $fetch("/apartment", {
-    method: "GET",
-    baseURL: "http://localhost:4000",
-    headers: {
-      Authorization: `Bearer ${userStore.jwt}`,
-    },
-  });
+  try {
+    apartments.value = await ApartmentService.getAll(userStore.jwt);
+  } catch (err) {
+    console.log(err);
+  }
 });
 </script>
 

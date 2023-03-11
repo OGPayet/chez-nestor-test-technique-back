@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useUserStore } from "@/store/user";
 import { ILoginFormData, IToken } from "@/types";
+import { AuthService } from "@/services";
+import { useUserStore } from "@/store/user";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -11,13 +12,9 @@ const formData: ILoginFormData = reactive({
 });
 
 const login = async () => {
-  const token: IToken = await $fetch("/auth/login", {
-    method: "POST",
-    baseURL: "http://localhost:4000",
-    body: {
-      username: formData.email,
-      password: formData.password,
-    },
+  const token: IToken = await AuthService.login({
+    email: formData.email,
+    password: formData.password,
   });
 
   userStore.jwt = token?.Authorization;

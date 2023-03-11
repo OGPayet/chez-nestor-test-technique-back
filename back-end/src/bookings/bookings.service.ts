@@ -14,6 +14,10 @@ export class BookingsService {
   async getBookingByUserId(userId: number): Promise<Booking | null> {
     return this.prisma.booking.findFirst({
       where: { userId },
+      include: {
+        user: true,
+        apartment: true,
+      },
     });
   }
 

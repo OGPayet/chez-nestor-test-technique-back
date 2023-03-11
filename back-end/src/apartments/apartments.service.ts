@@ -10,12 +10,10 @@ export class ApartmentsService {
     return this.prisma.apartment.findMany();
   }
 
-  async getApartmentIdByTitleSlug(
-    titleSlug: string,
-  ): Promise<Apartment | null> {
+  async getApartmentById(id: number): Promise<Apartment | null> {
     return this.prisma.apartment.findFirst({
       where: {
-        titleSlug,
+        id,
       },
     });
   }

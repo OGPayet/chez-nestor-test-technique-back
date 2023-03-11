@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IDashboardFormData } from "@/types";
+import { IUser } from "@/types";
 
 const props = defineProps({
   firstName: {
@@ -36,15 +36,10 @@ const props = defineProps({
   },
 });
 
-const formData: IDashboardFormData = reactive({
+const formData: IUser = reactive({
   firstName: props.firstName,
   lastName: props.lastName,
   email: props.email,
-  address: props.address,
-  city: props.city,
-  country: props.country,
-  state: props.state,
-  zipcode: props.zipcode,
 });
 
 const emit = defineEmits(["formSubmitted"]);
@@ -95,140 +90,6 @@ const submit = () => {
               id="email"
               class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
               placeholder="email@domain.com"
-            />
-          </div>
-
-          <div class="md:col-span-3">
-            <label for="address">Address / Street</label>
-            <input
-              v-model="formData.address"
-              type="text"
-              name="address"
-              id="address"
-              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-              placeholder=""
-            />
-          </div>
-
-          <div class="md:col-span-2">
-            <label for="city">City</label>
-            <input
-              v-model="formData.city"
-              type="text"
-              name="city"
-              id="city"
-              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-              placeholder=""
-            />
-          </div>
-
-          <div class="md:col-span-2">
-            <label for="country">Country / region</label>
-            <div
-              class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1"
-            >
-              <input
-                v-model="formData.country"
-                name="country"
-                id="country"
-                placeholder="Country"
-                class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-              />
-              <button
-                tabindex="-1"
-                class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600"
-              >
-                <svg
-                  class="w-4 h-4 mx-2 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-              <button
-                tabindex="-1"
-                for="show_more"
-                class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600"
-              >
-                <svg
-                  class="w-4 h-4 mx-2 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="18 15 12 9 6 15"></polyline>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="md:col-span-2">
-            <label for="state">State / province</label>
-            <div
-              class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1"
-            >
-              <input
-                v-model="formData.state"
-                name="state"
-                id="state"
-                placeholder="State"
-                class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-              />
-              <button
-                tabindex="-1"
-                class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600"
-              >
-                <svg
-                  class="w-4 h-4 mx-2 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-              <button
-                tabindex="-1"
-                for="show_more"
-                class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600"
-              >
-                <svg
-                  class="w-4 h-4 mx-2 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="18 15 12 9 6 15"></polyline>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="md:col-span-1">
-            <label for="zipcode">Zipcode</label>
-            <input
-              v-model="formData.zipcode"
-              type="text"
-              name="zipcode"
-              id="zipcode"
-              class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-              placeholder=""
             />
           </div>
 

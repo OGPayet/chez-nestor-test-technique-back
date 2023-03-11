@@ -20,35 +20,37 @@ export interface ILoginFormData {
   password: string;
 }
 
-export interface IUserData {
-  createdAt: string;
-  updatedAt: string;
+export interface IUser {
+  id?: number;
   email: string;
   firstName: string;
   lastName: string;
-  id: number;
-  role: string;
+  role?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IToken {
   Authorization: string;
-  data: IUserData;
+  data: IUser;
   expiresIn: string;
-}
-
-export interface IDashboardFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  address: string;
-  city: string;
-  country: string;
-  state: string;
-  zipcode: string;
 }
 
 export interface IApartmentFormData {
   dateOfArrival: string;
   dateOfDeparture: string;
   cleaningService: boolean;
+  errorMessage?: string;
+  successMessage?: string;
+}
+
+export interface IBooking {
+  id?: number;
+  dateOfArrival: string;
+  dateOfDeparture: string;
+  cleaningService: boolean;
+  userId: number;
+  apartmentId: number;
+  user?: IUser;
+  apartment?: IApartment;
 }

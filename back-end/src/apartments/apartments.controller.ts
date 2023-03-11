@@ -27,9 +27,7 @@ export class ApartmentsController {
   @ApiSecurity('access-key')
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('apartmentIdByTitleSlug/:titleSlug')
-  public async getApartmentIdByTitleSlug(
-    @Param('titleSlug') titleSlug: string,
-  ) {
-    return await this.apartmentsService.getApartmentIdByTitleSlug(titleSlug);
+  public async getApartmentById(@Param('id') id: string) {
+    return await this.apartmentsService.getApartmentById(parseInt(id));
   }
 }

@@ -1,20 +1,34 @@
 <script setup lang="ts">
 import { IApartmentFormData } from "@/types";
 
+const props = defineProps({
+  success: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const formData: IApartmentFormData = reactive({
   dateOfArrival: "",
   dateOfDeparture: "",
   cleaningService: false,
+  errorMessage: "",
+  successMessage: "",
 });
 
 const emit = defineEmits(["formSubmitted"]);
 
 const submit = () => {
-  emit("formSubmitted", {
-    dateOfArrival: new Date(formData.dateOfArrival),
-    dateOfDeparture: new Date(formData.dateOfDeparture),
-    cleaningService: formData.cleaningService,
-  });
+  if (formData.dateOfArrival && formData.dateOfDeparture) {
+    formData.errorMessage = "";
+    emit("formSubmitted", {
+      dateOfArrival: new Date(formData.dateOfArrival),
+      dateOfDeparture: new Date(formData.dateOfDeparture),
+      cleaningService: formData.cleaningService,
+    });
+  } else {
+    formData.errorMessage = "Please indicate an arrival and a departure date.";
+  }
 };
 </script>
 
@@ -74,6 +88,15 @@ const submit = () => {
                 Book
               </button>
             </div>
+            <p
+              v-if="formData.errorMessage"
+              class="text-red-600 font-bold text-lg"
+            >
+              {{ formData.errorMessage }}
+            </p>
+            <p v-if="success" class="text-green-600 font-bold text-lg">
+              Room booked with success!
+            </p>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { IApartment, IApartmentFormData } from "@/types";
+import { BookingService } from "@/services";
 import { useUserStore } from "@/store/user";
 
 definePageMeta({
@@ -23,23 +24,20 @@ const apartmentData: IApartment = {
 };
 
 const userStore = useUserStore();
+const bookingWithSuccess: Ref<boolean> = ref(false);
 
 const booking = async (bookingData: IApartmentFormData) => {
-  try {
-    const result = await $fetch("/booking", {
-      method: "POST",
-      baseURL: "http://localhost:4000",
-      headers: {
-        Authorization: `Bearer ${userStore.jwt}`,
-      },
-      body: {
+  if (userStore.userData.id && apartmentData.id) {
+    try {
+      userStore.userBooking = await BookingService.create(userStore.jwt, {
         ...bookingData,
         userId: userStore.userData.id,
         apartmentId: apartmentData.id,
-      },
-    });
-  } catch (err) {
-    console.log(err);
+      });
+      bookingWithSuccess.value = true;
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 </script>
@@ -59,6 +57,9 @@ const booking = async (bookingData: IApartmentFormData) => {
       :area="apartmentData.area"
       :price-per-square-meter="apartmentData.pricePerSquareMeter"
     ></Apartment>
-    <ApartmentForm @formSubmitted="booking"></ApartmentForm>
+    <ApartmentForm
+      @formSubmitted="booking"
+      :success="bookingWithSuccess"
+    ></ApartmentForm>
   </div>
 </template>
