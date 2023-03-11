@@ -3,6 +3,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.user.create({
+    data: {
+      firstName: 'Marco',
+      lastName: 'Paulo',
+      email: 'marco.paulo@outlook.com',
+      password: '@Marco123',
+    },
+  });
   await prisma.apartment.createMany({
     data: [
       {
@@ -16,6 +24,7 @@ async function main() {
         numberOfBedrooms: 1,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'La Madeleine',
@@ -28,6 +37,7 @@ async function main() {
         numberOfBedrooms: 2,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'General Leclerc',
@@ -40,6 +50,7 @@ async function main() {
         numberOfBedrooms: 3,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'Boulevard de Picpus',
@@ -52,6 +63,7 @@ async function main() {
         numberOfBedrooms: 4,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'Boulevard Saint-Germain',
@@ -64,6 +76,7 @@ async function main() {
         numberOfBedrooms: 5,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'Avenue Corentin Cariou',
@@ -76,6 +89,7 @@ async function main() {
         numberOfBedrooms: 6,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'Rue Thorel',
@@ -88,6 +102,7 @@ async function main() {
         numberOfBedrooms: 7,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
       {
         title: 'Rue des Petits Hotels',
@@ -100,6 +115,7 @@ async function main() {
         numberOfBedrooms: 8,
         area: 50,
         pricePerSquareMeter: 50,
+        isBooked: false,
       },
     ],
   });
