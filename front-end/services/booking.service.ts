@@ -1,9 +1,20 @@
-import { IBooking } from "@/types";
+import { IBooking, IApartmentFormData } from "@/types";
 
 export default {
   async create(jwt: string, body: IBooking): Promise<IBooking> {
     return await $fetch("/booking", {
       method: "POST",
+      baseURL: "http://localhost:4000",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+      body,
+    });
+  },
+
+  async update(jwt: string, body: IBooking): Promise<IBooking> {
+    return await $fetch("/booking", {
+      method: "PUT",
       baseURL: "http://localhost:4000",
       headers: {
         Authorization: `Bearer ${jwt}`,

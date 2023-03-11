@@ -20,6 +20,13 @@ export interface ILoginFormData {
   password: string;
 }
 
+export interface IRegisterFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
 export interface IUser {
   id?: number;
   email: string;
@@ -37,8 +44,8 @@ export interface IToken {
 }
 
 export interface IApartmentFormData {
-  dateOfArrival: string;
-  dateOfDeparture: string;
+  dateOfArrival: string | Date;
+  dateOfDeparture: string | Date;
   cleaningService: boolean;
   errorMessage?: string;
   successMessage?: string;
@@ -46,11 +53,11 @@ export interface IApartmentFormData {
 
 export interface IBooking {
   id?: number;
-  dateOfArrival: string;
-  dateOfDeparture: string;
+  dateOfArrival: string | Date;
+  dateOfDeparture: string | Date;
   cleaningService: boolean;
-  userId: number;
-  apartmentId: number;
+  userId?: number;
+  apartmentId?: number;
   user?: IUser;
   apartment?: IApartment;
 }

@@ -24,19 +24,27 @@ const apartmentData: IApartment = {
 };
 
 const userStore = useUserStore();
-const bookingWithSuccess: Ref<boolean> = ref(false);
+const bookedWithSuccess: Ref<boolean> = ref<boolean>(false);
+const errorMessage: Ref<string> = ref<string>("");
 
 const booking = async (bookingData: IApartmentFormData) => {
-  if (userStore.userData.id && apartmentData.id) {
+  if (userStore.userData?.id && apartmentData.id) {
     try {
       userStore.userBooking = await BookingService.create(userStore.jwt, {
         ...bookingData,
         userId: userStore.userData.id,
         apartmentId: apartmentData.id,
       });
-      bookingWithSuccess.value = true;
-    } catch (err) {
-      console.log(err);
+      bookedWithSuccess.value = true;
+    } catch (err: any) {
+      if (err.data?.message) {
+        if (err.data.message === "user_already_have_booking") {
+          errorMessage.value =
+            "You already have a booking, you should first cancel your booking if you want to book another room.";
+        } else {
+          errorMessage.value = err.data?.message;
+        }
+      }
     }
   }
 };
@@ -59,7 +67,8 @@ const booking = async (bookingData: IApartmentFormData) => {
     ></Apartment>
     <ApartmentForm
       @formSubmitted="booking"
-      :success="bookingWithSuccess"
+      :bookedWithSuccess="bookedWithSuccess"
+      :errorMessage="errorMessage"
     ></ApartmentForm>
   </div>
 </template>

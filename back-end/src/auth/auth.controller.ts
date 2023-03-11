@@ -14,6 +14,11 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Post('login')
+  public async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
+    return await this.authService.login(loginUserDto);
+  }
+
   @Post('register')
   public async register(
     @Body() createUserDto: CreateUserDto,
@@ -22,17 +27,15 @@ export class AuthController {
       createUserDto,
     );
 
-    if (result.success) {
+    if (!result.success) {
       throw new HttpException(result.message, HttpStatus.BAD_REQUEST, {
         cause: new Error(result.message),
       });
     }
 
-    return result;
-  }
-
-  @Post('login')
-  public async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
-    return await this.authService.login(loginUserDto);
+    return await this.login({
+      email: createUserDto.email,
+      password: createUserDto.password,
+    });
   }
 }

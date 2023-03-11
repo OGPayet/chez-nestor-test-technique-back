@@ -13,7 +13,7 @@ const userStore = useUserStore();
 onMounted(async () => {
   try {
     apartments.value = await ApartmentService.getAll(userStore.jwt);
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
   }
 });
