@@ -19,7 +19,9 @@ const login = async () => {
       password: formData.password,
     },
   });
+
   userStore.jwt = token?.Authorization;
+  userStore.userData = { ...token?.data };
 
   if (userStore.jwt) {
     router.push({ path: "/" });

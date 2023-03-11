@@ -18,6 +18,18 @@ model User {
   updatedAt  DateTime     @default(now()) @updatedAt
 }
 
+model Apartment {
+  id                      Int          @default(autoincrement()) @id
+  title                   String
+  address                 String
+  price                   Int
+  numberOfParkingSpaces   Int
+  numberOfBathrooms       Int
+  numberOfBedrooms        Int
+  area                    Int
+  pricePerSquareMeter     Int
+}
+
 enum Role {
   CLIENT
   ADMIN

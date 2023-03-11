@@ -1,5 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateUserDto, LoginUserDto, UpdatePasswordDto } from './users.dto';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  LoginUserDto,
+  UpdatePasswordDto,
+} from './users.dto';
 import { compare, hash } from 'bcrypt';
 import { PrismaService } from '../prisma.service';
 import { User } from '@prisma/client';
@@ -47,6 +52,25 @@ export class UsersService {
         ...userDto,
         role: 'CLIENT' as const,
         password: await hash(userDto.password, 10),
+      },
+    });
+  }
+
+  async update(userDto: UpdateUserDto): Promise<any> {
+    const userInDb = await this.prisma.user.findFirst({
+      where: { email: userDto.email },
+    });
+
+    if (!userInDb) {
+      throw new HttpException('user_not_found', HttpStatus.NOT_FOUND);
+    }
+
+    return await this.prisma.user.update({
+      where: {
+        email: userDto.email,
+      },
+      data: {
+        ...userDto,
       },
     });
   }

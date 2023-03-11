@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   modules: ["@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
   runtimeConfig: {
     public: {
-      jwtSecretkey: process.env.JWT_SECRETKEY,
+      jwtSecretkey: process.env.JWT_SECRETKEY, // TODO: find a way to make this variable work in private
     },
   },
 });

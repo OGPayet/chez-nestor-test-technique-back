@@ -6,16 +6,20 @@ export const useUserStore = defineStore({
   state: () => {
     return {
       jwt: "",
-      id: "",
-      email: "",
-      firstName: "",
-      lastName: "",
-      role: "",
+      userData: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        role: "",
+      },
     };
   },
   actions: {
-    setJwt(value: string) {
-      this.jwt = value;
+    clearUserData() {
+      this.userData.email = "";
+      this.userData.firstName = "";
+      this.userData.lastName = "";
+      this.userData.role = "";
     },
   },
 });

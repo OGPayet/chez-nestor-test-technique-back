@@ -34,3 +34,14 @@ export interface IToken {
   data: IUserData;
   expiresIn: string;
 }
+
+export interface IDashboardFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  city: string;
+  country: string;
+  state: string;
+  zipcode: string;
+}

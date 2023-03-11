@@ -11,7 +11,7 @@ import {
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { UpdatePasswordDto } from './users.dto';
+import { UpdateUserDto, UpdatePasswordDto } from './users.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -27,6 +27,21 @@ export class UsersController {
     return new RenderUser(req.user);
   }
   */
+
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Put('')
+  public async update(
+    @Body()
+    updateUserDto: UpdateUserDto,
+  ) {
+    await this.usersService.update(updateUserDto);
+
+    return {
+      message: 'user_update_success',
+    };
+  }
 
   @UseGuards(JwtAuthGuard)
   @ApiSecurity('access-key')
