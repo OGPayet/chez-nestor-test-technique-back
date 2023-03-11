@@ -32,6 +32,16 @@ const saveData = async (data: IDashboardFormData) => {
     console.log(err);
   }
 };
+
+onMounted(async () => {
+  await $fetch("/booking", {
+    method: "GET",
+    baseURL: "http://localhost:4000",
+    headers: {
+      Authorization: `Bearer ${userStore.jwt}`,
+    },
+  });
+});
 </script>
 
 <template>

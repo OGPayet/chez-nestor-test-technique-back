@@ -31,6 +31,14 @@ export class BookingsController {
   @UseGuards(JwtAuthGuard)
   @ApiSecurity('access-key')
   @UseInterceptors(ClassSerializerInterceptor)
+  @Get('/getBookingByUserId/:userId')
+  public async getBookingByUserId(@Param('userId') userId: string) {
+    return await this.bookingsService.getBookingByUserId(parseInt(userId));
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('')
   public async create(
     @Body()

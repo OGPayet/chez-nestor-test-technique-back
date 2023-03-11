@@ -11,6 +11,12 @@ export class BookingsService {
     return this.prisma.booking.findMany();
   }
 
+  async getBookingByUserId(userId: number): Promise<Booking | null> {
+    return this.prisma.booking.findFirst({
+      where: { userId },
+    });
+  }
+
   async create(bookingDto: CreateBookingDto): Promise<any> {
     const bookingInDb = await this.prisma.booking.findFirst({
       where: { apartmentId: bookingDto.apartmentId },
