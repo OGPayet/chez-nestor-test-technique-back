@@ -22,14 +22,13 @@ onMounted(async () => {
 
 <template>
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full mt-20 px-20"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full mt-20 mb-20 px-20"
   >
     <Apartment
       v-for="(apartment, index) in apartments"
       :key="index"
       :title="apartment.title"
       :imageSrc="apartment.imageSrc"
-      :imageAlt="apartment.imageAlt"
       :price="apartment.price"
       :address="apartment.address"
       :numberOfParkingSpaces="apartment.numberOfParkingSpaces"

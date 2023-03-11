@@ -8,10 +8,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  imageAlt: {
-    type: String,
-    required: true,
-  },
   price: {
     type: Number,
     required: true,
@@ -42,7 +38,7 @@ const props = defineProps({
   },
   stateOfFurniture: {
     type: String,
-    required: true,
+    default: "furnished",
   },
   area: {
     type: Number,
@@ -66,8 +62,21 @@ const slugify = (str: string): string => {
 
 <template>
   <div class="relative mx-auto w-full">
-    <a
-      :href="`/apartment-${slugify(title)}`"
+    <NuxtLink
+      :to="{
+        path: `/apartment-${slugify(title)}`,
+        query: {
+          title,
+          imageSrc,
+          price,
+          address,
+          numberOfParkingSpaces,
+          numberOfBathrooms,
+          numberOfBedrooms,
+          area,
+          pricePerSquareMeter,
+        },
+      }"
       class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full"
     >
       <div class="shadow p-4 rounded-lg bg-white">
@@ -80,7 +89,7 @@ const slugify = (str: string): string => {
             <img
               class="absolute inset-0 bg-black w-full h-full object-cover"
               :src="imageSrc"
-              :alt="imageAlt"
+              alt="Apartment image"
             />
           </div>
 
@@ -236,6 +245,6 @@ const slugify = (str: string): string => {
           </div>
         </div>
       </div>
-    </a>
+    </NuxtLink>
   </div>
 </template>
