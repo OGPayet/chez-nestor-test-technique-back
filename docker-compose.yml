@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+  front-end:
+    build: ./front-end
+    volumes:
+      - ./front-end:/app
+      - app_node_modules:/app/node_modules
+      - app_dotnuxt:/app/.nuxt
+    command: [pnpm, dev, -o]
+    ports:
+      - "3000:3000"
+    networks:
+      - postgres
+
   postgres:
     container_name: postgres_container
     image: postgres
@@ -37,5 +49,7 @@ networks:
     driver: bridge
 
 volumes:
+  app_node_modules:
+  app_dotnuxt:
   postgres:
   pgadmin:
