@@ -44,3 +44,8 @@ export interface IDashboardFormData {
   state: string;
   zipcode: string;
 }
+
+export interface IApartmentFormData {
+  dateOfArrival: string;
+  dateOfDeparture: string;
+}

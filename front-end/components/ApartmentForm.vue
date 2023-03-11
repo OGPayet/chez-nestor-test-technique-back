@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import { IApartmentFormData } from "@/types";
+import { DefaultSerializer } from "v8";
+
+const formData: IApartmentFormData = reactive({
+  dateOfArrival: "",
+  dateOfDeparture: "",
+  cleaningService: false,
+});
+
+const emit = defineEmits(["formSubmitted"]);
+
+const submit = () => {
+  emit("formSubmitted", formData);
+};
+</script>
+
 <template>
   <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -47,6 +64,7 @@
           <div class="md:col-span-5 text-right">
             <div class="inline-flex items-end">
               <button
+                @submit="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded"
               >
                 Book

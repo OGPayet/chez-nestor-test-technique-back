@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { IApartment } from "@/types";
+import { IApartment, IApartmentFormData } from "@/types";
+import { useUserStore } from "@/store/user";
 
 definePageMeta({
   middleware: ["auth"],
@@ -18,6 +19,19 @@ const apartmentData: IApartment = {
   area: parseInt(route.query.numberOfBedrooms as string),
   pricePerSquareMeter: parseInt(route.query.numberOfBedrooms as string),
 };
+
+const userStore = useUserStore();
+
+const booking = async (bookingData: IApartmentFormData) => {
+  await $fetch("/booking", {
+    method: "POST",
+    baseURL: "http://localhost:4000",
+    headers: {
+      Authorization: `Bearer ${userStore.jwt}`,
+    },
+    bookingData,
+  });
+};
 </script>
 
 <template>
@@ -33,6 +47,6 @@ const apartmentData: IApartment = {
       :area="apartmentData.area"
       :price-per-square-meter="apartmentData.pricePerSquareMeter"
     ></Apartment>
-    <ApartmentForm></ApartmentForm>
+    <ApartmentForm @formSubmitted="booking"></ApartmentForm>
   </div>
 </template>
