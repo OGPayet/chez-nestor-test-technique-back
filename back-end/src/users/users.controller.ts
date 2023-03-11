@@ -36,11 +36,11 @@ export class UsersController {
     @Body()
     updateUserDto: UpdateUserDto,
   ) {
-    await this.usersService.update(updateUserDto);
+    const res = await this.usersService.update(updateUserDto);
 
-    return {
-      message: 'user_update_success',
-    };
+    delete res.password;
+
+    return res;
   }
 
   @UseGuards(JwtAuthGuard)

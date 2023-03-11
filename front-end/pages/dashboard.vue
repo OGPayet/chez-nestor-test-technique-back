@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { IDashboardFormData } from "@/types";
+import { IDashboardFormData, IUserData } from "@/types";
 import { useUserStore } from "@/store/user";
+
+definePageMeta({
+  middleware: ["auth"],
+});
 
 const userStore = useUserStore();
 
@@ -8,23 +12,25 @@ const userData = reactive({
   ...userStore.userData,
 });
 
-console.log(userData);
-
 const saveData = async (data: IDashboardFormData) => {
-  const result = await $fetch("/user", {
-    method: "PUT",
-    baseURL: "http://localhost:4000",
-    headers: {
-      Authorization: `Bearer ${userStore.jwt}`,
-    },
-    body: {
-      email: data.email,
-      firstName: data.firstName,
-      lastName: data.lastName,
-    },
-  });
+  try {
+    const result: IUserData = await $fetch("/user", {
+      method: "PUT",
+      baseURL: "http://localhost:4000",
+      headers: {
+        Authorization: `Bearer ${userStore.jwt}`,
+      },
+      body: {
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      },
+    });
 
-  console.log(result);
+    userStore.userData = { ...result };
+  } catch (err) {
+    console.log(err);
+  }
 };
 </script>
 
