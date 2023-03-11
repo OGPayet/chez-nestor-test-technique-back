@@ -13,11 +13,7 @@ import {
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { BookingsService } from './bookings.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import {
-  CreateBookingDto,
-  UpdateBookingDto,
-  DeleteBookingDto,
-} from './bookings.dto';
+import { CreateBookingDto, UpdateBookingDto } from './bookings.dto';
 
 @ApiTags('bookings')
 @Controller('booking')
@@ -58,7 +54,7 @@ export class BookingsController {
   @ApiSecurity('access-key')
   @UseInterceptors(ClassSerializerInterceptor)
   @Delete(':id')
-  public async delete(@Param() params: DeleteBookingDto) {
-    return await this.bookingsService.delete(parseInt(params.id));
+  public async delete(@Param('id') id: string) {
+    return await this.bookingsService.delete(parseInt(id));
   }
 }

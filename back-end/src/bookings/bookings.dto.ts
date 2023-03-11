@@ -48,9 +48,3 @@ export class UpdateBookingDto {
   @IsNotEmpty()
   apartmentId: number;
 }
-
-export class DeleteBookingDto {
-  @IsNotEmpty()
-  @ApiProperty()
-  id: string;
-}

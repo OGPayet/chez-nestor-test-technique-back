@@ -7,6 +7,7 @@ async function main() {
     data: [
       {
         title: 'Git-le-Coeur',
+        titleSlug: 'git-le-coeur',
         address: '15 Rue Git-le-Coeur',
         imageSrc: '/images/apartments/apartment-1.jpg',
         price: 100,
@@ -18,6 +19,7 @@ async function main() {
       },
       {
         title: 'La Madeleine',
+        titleSlug: 'la-madeleine',
         address: '33 Place de la Madeleine',
         imageSrc: '/images/apartments/apartment-2.jpg',
         price: 200,
@@ -29,6 +31,7 @@ async function main() {
       },
       {
         title: 'General Leclerc',
+        titleSlug: 'general-leclerc',
         address: '4 Avenue du General Leclerc',
         imageSrc: '/images/apartments/apartment-3.jpg',
         price: 300,
@@ -40,6 +43,7 @@ async function main() {
       },
       {
         title: 'Boulevard de Picpus',
+        titleSlug: 'boulevard-de-picpus',
         address: '50 Boulevard de Picpus',
         imageSrc: '/images/apartments/apartment-4.jpg',
         price: 400,
@@ -51,6 +55,7 @@ async function main() {
       },
       {
         title: 'Boulevard Saint-Germain',
+        titleSlug: 'boulevard-saint-germain',
         address: '52 Boulevard Saint-Germain',
         imageSrc: '/images/apartments/apartment-5.jpg',
         price: 500,
@@ -62,6 +67,7 @@ async function main() {
       },
       {
         title: 'Avenue Corentin Cariou',
+        titleSlug: 'avenue-corentin-cariou',
         address: '33 Avenue Corentin Cariou',
         imageSrc: '/images/apartments/apartment-6.jpg',
         price: 600,
@@ -73,6 +79,7 @@ async function main() {
       },
       {
         title: 'Rue Thorel',
+        titleSlug: 'rue-thorel',
         address: '16 Rue Thorel',
         imageSrc: '/images/apartments/apartment-7.jpg',
         price: 700,
@@ -84,6 +91,7 @@ async function main() {
       },
       {
         title: 'Rue des Petits Hotels',
+        titleSlug: 'rue-des-petits-hotels',
         address: '5 Rue des Petits Hotels',
         imageSrc: '/images/apartments/apartment-8.jpg',
         price: 800,

@@ -9,4 +9,14 @@ export class ApartmentsService {
   async getAllApartments(): Promise<Apartment[]> {
     return this.prisma.apartment.findMany();
   }
+
+  async getApartmentIdByTitleSlug(
+    titleSlug: string,
+  ): Promise<Apartment | null> {
+    return this.prisma.apartment.findFirst({
+      where: {
+        titleSlug,
+      },
+    });
+  }
 }

@@ -48,4 +48,5 @@ export interface IDashboardFormData {
 export interface IApartmentFormData {
   dateOfArrival: string;
   dateOfDeparture: string;
+  cleaningService: boolean;
 }
