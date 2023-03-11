@@ -1,6 +1,6 @@
-import { IBooking, IApartmentFormData } from "@/types";
+import { IBooking } from "@/types";
 
-const apiBaseUrl: string = "http://localhost:4000";
+const apiBaseUrl: string = "http://back-end:4000";
 
 export default {
   async create(jwt: string, body: IBooking): Promise<IBooking> {

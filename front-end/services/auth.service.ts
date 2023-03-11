@@ -1,6 +1,6 @@
 import { ILoginFormData, IRegisterFormData, IToken } from "@/types";
 
-const apiBaseUrl: string = "http://localhost:4000";
+const apiBaseUrl: string = "http://back-end:4000";
 
 export default {
   async login(body: ILoginFormData): Promise<IToken> {

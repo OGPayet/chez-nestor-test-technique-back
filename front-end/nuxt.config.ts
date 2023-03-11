@@ -17,4 +17,8 @@ export default defineNuxtConfig({
       jwtSecretkey: process.env.JWT_SECRETKEY, // TODO: find a way to make this variable work in private
     },
   },
+  routeRules: {
+    "/": { prerender: true },
+    "/*": { cors: true },
+  },
 });
