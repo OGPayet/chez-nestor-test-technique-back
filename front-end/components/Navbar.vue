@@ -11,7 +11,7 @@ const logout = () => {
   userStore.clearUserData();
   const userStoreCookie = useCookie("user-store");
   userStoreCookie.value = null;
-  router.push({ path: "/" });
+  router.push({ path: "/login" });
 };
 </script>
 

@@ -21,4 +21,17 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/*": { cors: true },
   },
+  vite: {
+    server: {
+      proxy: {
+        "/back-end-api": {
+          target: "http://back-end:4000",
+          ws: true,
+          changeOrigin: true,
+          autoRewrite: true,
+          rewrite: (path) => path.replace(/^\/back-end-api/, ""),
+        },
+      },
+    },
+  },
 });

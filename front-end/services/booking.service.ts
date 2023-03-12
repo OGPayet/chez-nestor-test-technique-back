@@ -1,6 +1,6 @@
 import { IBooking } from "@/types";
 
-const apiBaseUrl: string = "http://back-end:4000";
+const apiBaseUrl: string = "/back-end-api";
 
 export default {
   async create(jwt: string, body: IBooking): Promise<IBooking> {

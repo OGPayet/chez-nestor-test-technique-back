@@ -18,15 +18,23 @@ onMounted(async () => {
         userStore.jwt,
         userStore.userData.id
       );
-      bookingFormData.dateOfArrival = new Date(userBooking.value.dateOfArrival)
-        .toISOString()
-        .substring(0, 10);
-      bookingFormData.dateOfDeparture = new Date(
-        userBooking.value.dateOfDeparture
-      )
-        .toISOString()
-        .substring(0, 10);
-      bookingFormData.cleaningService = userBooking.value.cleaningService;
+      if (
+        userBooking.value?.dateOfArrival &&
+        userBooking.value?.dateOfDeparture &&
+        userBooking.value?.cleaningService
+      ) {
+        bookingFormData.dateOfArrival = new Date(
+          userBooking.value.dateOfArrival
+        )
+          .toISOString()
+          .substring(0, 10);
+        bookingFormData.dateOfDeparture = new Date(
+          userBooking.value.dateOfDeparture
+        )
+          .toISOString()
+          .substring(0, 10);
+        bookingFormData.cleaningService = userBooking.value.cleaningService;
+      }
     } catch (err: any) {
       console.log(err);
     }

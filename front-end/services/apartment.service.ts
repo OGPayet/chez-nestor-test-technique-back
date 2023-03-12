@@ -1,6 +1,6 @@
 import { IApartment } from "@/types";
 
-const apiBaseUrl: string = "http://back-end:4000";
+const apiBaseUrl: string = "/back-end-api";
 
 export default {
   async getAll(jwt: string): Promise<IApartment[]> {

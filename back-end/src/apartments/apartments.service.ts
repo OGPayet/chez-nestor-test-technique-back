@@ -11,14 +11,6 @@ export class ApartmentsService {
     return this.prisma.apartment.findMany();
   }
 
-  async getApartmentById(id: number): Promise<Apartment | null> {
-    return this.prisma.apartment.findFirst({
-      where: {
-        id,
-      },
-    });
-  }
-
   async update(apartmentDto: UpdateApartmentDto): Promise<any> {
     const apartmentInDb = await this.prisma.apartment.findFirst({
       where: { id: apartmentDto.id },

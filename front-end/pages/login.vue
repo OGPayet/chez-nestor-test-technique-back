@@ -24,7 +24,7 @@ const login = async () => {
       router.push({ path: "/" });
     }
   } catch (err: any) {
-    if (err.data && err.data.message) {
+    if (err.data?.message) {
       err.data.message === "invalid_credentials"
         ? (errorMessage.value = "Invalid login credentials. Please try again.")
         : (errorMessage.value = err.data.message);

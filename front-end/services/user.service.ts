@@ -1,6 +1,6 @@
 import { IUser } from "@/types";
 
-const apiBaseUrl: string = "http://back-end:4000";
+const apiBaseUrl: string = "/back-end-api";
 
 export default {
   async update(jwt: string, body: IUser): Promise<IUser> {

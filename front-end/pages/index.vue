@@ -9,11 +9,19 @@ definePageMeta({
 
 const apartments: Ref<IApartment[]> = ref([]);
 const userStore = useUserStore();
+const router = useRouter();
 
 onMounted(async () => {
   try {
     apartments.value = await ApartmentService.getAll(userStore.jwt);
   } catch (err: any) {
+    if (err.data?.message === "INVALID_TOKEN") {
+      userStore.jwt = "";
+      userStore.clearUserData();
+      const userStoreCookie = useCookie("user-store");
+      userStoreCookie.value = null;
+      router.push({ path: "/login" });
+    }
     console.log(err);
   }
 });
