@@ -23,6 +23,10 @@ export default defineNuxtConfig({
   },
   vite: {
     server: {
+      hmr: {
+        port: 3001,
+        clientPort: 3001,
+      },
       proxy: {
         "/back-end-api": {
           target: "http://back-end:4000",

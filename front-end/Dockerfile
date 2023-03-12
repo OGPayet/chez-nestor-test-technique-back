@@ -9,3 +9,5 @@ COPY pnpm-lock.yaml ./
 COPY .npmrc ./
 
 RUN pnpm install --shamefully-hoist
+
+EXPOSE 3001
