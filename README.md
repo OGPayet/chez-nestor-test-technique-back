@@ -4,7 +4,7 @@ Test technique pour le poste de Développeur Web (NodeJS) en CDI Chez Nestor
 
 ## Démo
 
-http://46.101.103.95:3000
+<a href="http://46.101.103.95:3000" target="_blank">[Hello, world!](http://46.101.103.95:3000)</a>
 
 ## Stack technique utilisée
 
