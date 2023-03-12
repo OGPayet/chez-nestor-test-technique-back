@@ -43,7 +43,10 @@ const booking = async (bookingData: IApartmentFormData) => {
       });
     } catch (err: any) {
       if (err.data?.message) {
-        if (err.data.message === "user_already_have_booking") {
+        if (
+          err.data.message === "user_already_have_booking" ||
+          err.data.message === "apartment_already_booked"
+        ) {
           errorMessage.value =
             "You already have a booking, you should first cancel your booking if you want to book another room.";
         } else {

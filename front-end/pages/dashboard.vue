@@ -20,8 +20,7 @@ onMounted(async () => {
       );
       if (
         userBooking.value?.dateOfArrival &&
-        userBooking.value?.dateOfDeparture &&
-        userBooking.value?.cleaningService
+        userBooking.value?.dateOfDeparture
       ) {
         bookingFormData.dateOfArrival = new Date(
           userBooking.value.dateOfArrival
@@ -36,6 +35,9 @@ onMounted(async () => {
         bookingFormData.cleaningService = userBooking.value.cleaningService;
       }
     } catch (err: any) {
+      if (err.data?.message === "INVALID_TOKEN") {
+        userStore.logout();
+      }
       console.log(err);
     }
   }

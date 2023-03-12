@@ -20,7 +20,8 @@ export const useUserStore = defineStore({
     };
   },
   actions: {
-    clearUserData() {
+    logout() {
+      this.jwt = "";
       this.userData.id = 0;
       this.userData.email = "";
       this.userData.firstName = "";
@@ -29,6 +30,10 @@ export const useUserStore = defineStore({
       this.userData.createdAt = "";
       this.userData.updatedAt = "";
       this.userBooking = {};
+      const userStoreCookie = useCookie("user-store");
+      userStoreCookie.value = null;
+      const router = useRouter();
+      router.push({ path: "/login" });
     },
   },
 });

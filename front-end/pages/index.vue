@@ -16,11 +16,7 @@ onMounted(async () => {
     apartments.value = await ApartmentService.getAll(userStore.jwt);
   } catch (err: any) {
     if (err.data?.message === "INVALID_TOKEN") {
-      userStore.jwt = "";
-      userStore.clearUserData();
-      const userStoreCookie = useCookie("user-store");
-      userStoreCookie.value = null;
-      router.push({ path: "/login" });
+      userStore.logout();
     }
     console.log(err);
   }

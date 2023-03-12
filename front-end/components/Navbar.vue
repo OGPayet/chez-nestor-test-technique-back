@@ -7,11 +7,7 @@ const router = useRouter();
 const userStore = useUserStore();
 
 const logout = () => {
-  userStore.jwt = "";
-  userStore.clearUserData();
-  const userStoreCookie = useCookie("user-store");
-  userStoreCookie.value = null;
-  router.push({ path: "/login" });
+  userStore.logout();
 };
 </script>
 
