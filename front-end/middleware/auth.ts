@@ -13,7 +13,8 @@ export default defineNuxtRouteMiddleware(async (_to, _from) => {
       );
 
       if (!jwtCheck) return navigateTo({ name: "login" });
-    } catch {
+    } catch (err: any) {
+      console.log(err);
       return navigateTo({ name: "login" });
     }
   } else {
