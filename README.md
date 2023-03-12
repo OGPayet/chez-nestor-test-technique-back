@@ -1,4 +1,5 @@
 # chez-nestor-test-technique-back
+
 Test technique pour le poste de Développeur Web (NodeJS) en CDI Chez Nestor
 
 ## Stack technique utilisée
@@ -6,7 +7,9 @@ Test technique pour le poste de Développeur Web (NodeJS) en CDI Chez Nestor
 Front-end :
 - Nuxt 3
 - TypeScript
+- Pinia
 - TailwindCSS
+- pnpm
 - Docker
 
 Back-end :
@@ -15,6 +18,7 @@ Back-end :
 - Prisma
 - Swagger
 - Jest
+- pnpm
 - Docker
 
 Base de données :
