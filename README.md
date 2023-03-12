@@ -2,6 +2,12 @@
 
 Test technique pour le poste de Développeur Web (NodeJS) en CDI Chez Nestor
 
+## Démo
+
+Démo déployé sur un serveur Ubuntu DigitalOcean :
+
+http://46.101.103.95:3000
+
 ## Stack technique utilisée
 
 Front-end :
