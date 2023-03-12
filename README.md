@@ -4,7 +4,9 @@ Test technique pour le poste de Développeur Web (NodeJS) en CDI Chez Nestor
 
 ## Démo
 
-<a href="http://46.101.103.95:3000" target="_blank">Démo déployé sur un serveur Ubuntu DigitalOcean</a>
+Démo déployé sur un serveur Ubuntu DigitalOcean :
+
+http://46.101.103.95:3000
 
 ## Stack technique utilisée
 
