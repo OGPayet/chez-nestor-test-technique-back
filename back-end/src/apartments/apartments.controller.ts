@@ -4,7 +4,6 @@ import {
   Get,
   UseGuards,
   UseInterceptors,
-  Param,
   Put,
   Body,
 } from '@nestjs/common';
@@ -24,14 +23,6 @@ export class ApartmentsController {
   @Get('')
   public async getAllApartments() {
     return await this.apartmentsService.getAllApartments();
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @ApiSecurity('access-key')
-  @UseInterceptors(ClassSerializerInterceptor)
-  @Get('apartmentIdByTitleSlug/:titleSlug')
-  public async getApartmentById(@Param('id') id: string) {
-    return await this.apartmentsService.getApartmentById(parseInt(id));
   }
 
   @UseGuards(JwtAuthGuard)
